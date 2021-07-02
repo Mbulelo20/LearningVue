@@ -88,7 +88,7 @@
         return value.toUpperCase()
       }, 
       'cut': function(value){
-        return value.slice(0,300) + "..."
+        return value.slice(0,300) + "...p"
       },
     }
     
