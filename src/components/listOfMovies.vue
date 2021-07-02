@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h1>{{title}}</h1>
+      <h1>Movie List</h1>
     </div>
     <div>
       <center>
@@ -13,10 +13,7 @@
       <md-button style="margin: 5px auto" @click="getWeather()">Search</md-button>
     </center>
     </div>
-      
-    <div v-for="movie in movies" :key="movie" style="display: grid">
-      
-    </div>
+   
     <b-container>
       <div class="row" style="margin-bottom: 5em, grid-gap: 5em">
         <div class="col-sm-4" v-for="movie in filteredMovies" :key="movie"> 
@@ -26,9 +23,7 @@
             </div>
             <div class="col-sm-7" style="margin-left: -.5em">
                 <h5 class="centered">{{movie.original_title | to-uppercase}}</h5>
-                <p style="font-size:12px;">{{movie.overview | cut}}</p>
-                <p style="font-size:12px;">Released: {{movie.release_date}}</p>
-                <p style="font-size:12px;">Rating: {{movie.vote_average}}</p>
+                
             </div>
           </div>
         </div>
@@ -41,22 +36,16 @@
 
 <script>
   import { BContainer, VBModal } from 'bootstrap-vue'
-  import searchBar from '../mixins/searchBar'
+    import searchBar from '../mixins/searchBar'
   export default {
     name: 'RegularButtons',
     components: { BContainer },
     directives: { 'b-container': VBModal },
     data () {
       return {
-        alignments: [
-          'start',
-          'center',
-          'end',
-        ],
+        
         search: '',
-        title: 'Your Weather',
         movies: [],
-        go: 'google.com',
       }       
     },
     methods: {
@@ -77,14 +66,14 @@
         })
     }, 
     computed: {
-      
+     
     },
     filters: {
       toUppercase(value){
         return value.toUpperCase()
       }, 
       'cut': function(value){
-        return value.slice(0,300) + "..."
+        return value.slice(0,300) + "...p"
       },
     },
     mixins: [
