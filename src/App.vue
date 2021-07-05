@@ -8,7 +8,7 @@
 <script>
 
 import AddBlog from './components/addBlog.vue';
-import showTasks from './components/showTasks.vue'
+import homeView from './components/home.vue'
 import listMovies from './components/listOfMovies.vue'
 import header from './components/header.vue'
 
@@ -16,7 +16,7 @@ import header from './components/header.vue'
 export default {
   components: {
     'add-blog': AddBlog,
-    'show-tasks': showTasks,
+    'home-view': homeView,
     'list-movies': listMovies,
     'app-header': header    
   },

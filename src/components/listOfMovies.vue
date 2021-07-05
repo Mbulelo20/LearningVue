@@ -56,6 +56,7 @@
       //   })
       //   this.forecast = this.data;
       // }
+      
     }, 
     created() {
       this.$http.get('https://api.themoviedb.org/3/movie/popular?api_key=9270421e43cc32ed6056cad8de3c2c67&language=en-US&page=1')
