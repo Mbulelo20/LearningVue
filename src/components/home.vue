@@ -23,9 +23,8 @@
                 <img v-bind:src="'http://image.tmdb.org/t/p/w500/' + movie.poster_path" style="width:275px;">
               </div>
               <div class="col-sm-7" style="margin-left: -.5em">
-                  <router-link to="/movie-details" exact>
                     <h5 class="centered">{{movie.original_title | to-uppercase}}</h5>
-                  </router-link>
+                  
                   <p style="font-size:12px;">{{movie.overview | cut}}</p>
                   <p style="font-size:12px;">Released: {{movie.release_date}}</p>
                   <p style="font-size:12px;">Rating: {{movie.vote_average}}</p>
