@@ -38,12 +38,7 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="container row" v-for="actor in cast" :key="actor" style="display: inline-block, max-width: 33%">
-              <div class="col-sm-3">
-                <img v-bind:src="'http://image.tmdb.org/t/p/w200/' + actor.profile_path" style="width: 60%"/>
-                <h6>{{actor.name}}</h6>
-              </div>
-            </div> -->
+           
           </div>
         </div>
       </center> 
