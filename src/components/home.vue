@@ -15,7 +15,7 @@
       
     </div>
     <b-container>
-      <div class="row" style="margin-bottom: 5em, grid-gap: 5em">
+      <div class="row" style="margin-bottom: 5em">
         <div class="col-sm-4" v-for="movie in filteredMovies" :key="movie"> 
           <router-link v-bind:to="'/movie/' + movie.id">      
             <div class="row" style="margin-bottom: 5em">
@@ -32,7 +32,9 @@
             </div>
           </router-link>
         </div>
+        
       </div>
+      
     </b-container>
   </div>
 
@@ -40,6 +42,7 @@
 </template>
 
 <script>
+  import {bus} from '../main';
   import { BContainer, VBModal } from 'bootstrap-vue'
   import searchBar from '../mixins/searchBar'
   export default {
@@ -48,6 +51,7 @@
     directives: { 'b-container': VBModal },
     data () {
       return {
+        currentPage: 1,
         alignments: [
           'start',
           'center',
@@ -68,10 +72,30 @@
         this.movies = data.body.results
         })
       },
+      nextPage: function() {
+         this.currentPage += 1
+         console.log("next"+ this.currentPage)
+        return this.$http.get('https://api.themoviedb.org/3/movie/popular?api_key=9270421e43cc32ed6056cad8de3c2c67&language=en-US&page='+ this.currentPage)
+        .then(function(data) {
+          this.movies = data.body.results
+          this.poster = 'https://image.tmdb.org/t/p/w500/'+data.body.results.poster_path
+        })
+      }
     }, 
     created() {
-      this.$http.get('https://api.themoviedb.org/3/movie/popular?api_key=9270421e43cc32ed6056cad8de3c2c67&language=en-US&page=1')
-      .then(function(data) {
+      this.currentPage = 1;
+      bus.$on('page', (data) => {
+        console.log("data from bus: "+data)
+        this.currentPage = data
+        this.$http.get('https://api.themoviedb.org/3/movie/popular?api_key=9270421e43cc32ed6056cad8de3c2c67&language=en-US&page='+ this.currentPage)
+        .then(function(data) {
+          console.log(data.body.results)
+          this.movies = data.body.results
+          this.poster = 'https://image.tmdb.org/t/p/w500/'+data.body.results.poster_path
+        })
+      })
+      this.$http.get('https://api.themoviedb.org/3/movie/popular?api_key=9270421e43cc32ed6056cad8de3c2c67&language=en-US&page='+ this.currentPage)
+        .then(function(data) {
           console.log(data.body.results)
           this.movies = data.body.results
           this.poster = 'https://image.tmdb.org/t/p/w500/'+data.body.results.poster_path
