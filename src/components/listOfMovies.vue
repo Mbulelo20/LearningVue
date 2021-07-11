@@ -37,6 +37,7 @@
 <script>
   import { BContainer, VBModal } from 'bootstrap-vue'
     import searchBar from '../mixins/searchBar'
+    import {bus} from '../main';
   export default {
     name: 'RegularButtons',
     components: { BContainer },
@@ -59,6 +60,7 @@
       
     }, 
     created() {
+      bus.$on('sendInput', (data) => {console.log('received from bus: ' + data)})
       this.$http.get('https://api.themoviedb.org/3/movie/popular?api_key=9270421e43cc32ed6056cad8de3c2c67&language=en-US&page=1')
       .then(function(data) {
           console.log(data.body.results)

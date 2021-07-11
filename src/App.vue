@@ -1,8 +1,10 @@
 <template>
   <div>
-    <app-header></app-header>
+    
+    <h1 style="text-align: center">Movie-Stop</h1>
     <router-view></router-view>
     <nav-buttons></nav-buttons>
+
   </div>
 </template>
 
@@ -25,9 +27,18 @@ export default {
   },
   data () {
     return {
-      
     }
   }
  
 }
 </script>
+<style scoped>
+h1{
+  display: block;
+  color: #333333;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 16px;
+    font-size: 59px;
+}
+</style>

@@ -3,7 +3,8 @@ import App from './App.vue'
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router'
 import Routes from './Routes'
-
+import VueRouterBackButton from 'vue-router-back-button'
+import {store} from './store'
 
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
@@ -17,6 +18,7 @@ Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(VueMaterial)
 Vue.use(BootstrapVue)
+Vue.use(VueRouterBackButton, { router })
 
 const router = new VueRouter({
   routes: Routes,
@@ -24,6 +26,7 @@ const router = new VueRouter({
 })
 
 new Vue({
+  store: store,
   el: '#app',
   render: h => h(App),
 

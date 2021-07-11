@@ -1,13 +1,15 @@
 <template> 
     <div class="container">
-        <div class="row" >
-            <div class="btn-group" role="group" aria-label="Basic example" :style="{marginTop: '-3em', marginBottom: '2em', width: '50%'}">
+        
             <center>
-                <button type="button" class="btn btn-secondary" :disabled="currentPage == 1" @click="previousPage()">Back</button>
-                <button type="button" class="btn btn-secondary" @click="nextPage()">Next</button>
-            </center>
+
+            <div class="btn-group" role="group" aria-label="Basic example" :style="{marginTop: '-3em', marginBottom: '2em', width: '70%'}">
+                <button type="button" class="btn btn-secondary" :disabled=" this.$store.state.currentPage == 1" v-if="!this.$store.state.hideNavButtons" @click="previousPage()">Back</button>
+                <button type="button" class="btn btn-secondary" v-if="!this.$store.state.hideNavButtons" @click="nextPage()">Next</button>
+                
             </div>
-        </div>
+                        </center>
+
     </div>
 </template>
 
@@ -16,16 +18,18 @@ import {bus} from '../main';
 export default {
     data() {
         return {
-            currentPage: 1
         }
     },
     methods: {
         
         nextPage: function() {
-            bus.$emit('page', this.currentPage += 1)
+            bus.$emit('page', this.$store.state.currentPage += 1)
+            console.log("inc state: "+ this.$store.state.currentPage)
+            window.scrollTo(0, 0);
         },
         previousPage: function() {
-            bus.$emit('page', this.currentPage -= 1)
+            window.scrollTo(0, 0);
+            bus.$emit('page', this.$store.state.currentPage -= 1)
         }
     }, 
 }
