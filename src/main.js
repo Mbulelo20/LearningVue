@@ -18,12 +18,14 @@ Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(VueMaterial)
 Vue.use(BootstrapVue)
-Vue.use(VueRouterBackButton, { router })
 
 const router = new VueRouter({
   routes: Routes,
   mode: 'history'
 })
+
+Vue.use(VueRouterBackButton, { router })
+
 
 new Vue({
   store: store,

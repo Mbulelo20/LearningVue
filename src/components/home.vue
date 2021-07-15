@@ -15,7 +15,7 @@
     
     <b-container>
       <div class="row" style="margin-bottom: 5em">
-        <div class="col-sm-4" v-for="movie in filteredMovies" :key="movie"> 
+        <div class="col-sm-4" v-for="movie in filteredMovies" :key="movie.id"> 
           <router-link @click.native="clickedItem()" v-bind:to="'/movie/' + movie.id" style="color: #000000">      
             <div class="row" style="margin-bottom: 5em">
               <div class="col-sm-5">
@@ -61,6 +61,9 @@
       }       
     },
     methods: {
+       currentPage(){
+        this.$store.state.currentPage
+      },
         searchMovie: function() {
           this.search = this.$refs.searchInput.value;
           // console.log("Search: "+this.search)
@@ -106,9 +109,7 @@
         })
     }, 
     computed: {
-      currentPage(){
-        this.$store.state.currentPage
-      }
+     
     },
     filters: {
       toUppercase(value){

@@ -4,7 +4,7 @@
     <div class="container">
       <center>
         <div class="container row" style="margin-bottom: 3em">
-          <div class="col-sm-2" v-for="(image) in images.slice(0, 5)" :key="image.id" style="margin: 0px auto">
+          <div class="col-sm-2" v-for="(image) in images" :key="image.id" style="margin: 0px auto">
             <img v-bind:src="'http://image.tmdb.org/t/p/w500/' + image.file_path" >              
           </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="container" v-bind:style="{marginTop: '2em'}" >
               <div style="margin-top: 2em"><h5>Cast</h5></div>
               <div class="row" style="display: inline-block, margin-top: 2em">
-                <div class="col-sm-3" v-for="actor in cast.slice(0, 4)" :key="actor.id">                  
+                <div class="col-sm-3" v-for="actor in cast" :key="actor.id">                  
                   <img v-bind:src="'http://image.tmdb.org/t/p/w500/' + actor.profile_path" style="width: 90%"/>
                   <h6>{{actor.name}} </h6>
                 </div>
@@ -73,13 +73,13 @@ export default {
           this.movie = data.body;
           // console.log("image below")
           // console.log(data.body.images.backdrops);
-          this.images = data.body.images.backdrops;
+          this.images = data.body.images.backdrops.slice(0, 5);
           this.genres = data.body.genres
 
           this.$http.get('https://api.themoviedb.org/3/movie/'+this.id+'/credits?api_key=9270421e43cc32ed6056cad8de3c2c67&language=en-US').then(function(data){
           // console.log("cast below")
           // console.log(data.body);
-          this.cast = data.body.cast;
+          this.cast = data.body.cast.slice(0, 4);
           
         });
           
@@ -92,10 +92,10 @@ export default {
     },
     methods: {
       back(){
-        alert('clicked')
-        this.$router.go(-1)
+        return this.$router.go(-1)
       }
-    }
+    },
+    
 }
 
 </script>
