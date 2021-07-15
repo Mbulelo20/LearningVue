@@ -24,7 +24,6 @@ export default {
         
         nextPage: function() {
             bus.$emit('page', this.$store.state.currentPage += 1)
-            console.log("inc state: "+ this.$store.state.currentPage)
             window.scrollTo(0, 0);
         },
         previousPage: function() {
